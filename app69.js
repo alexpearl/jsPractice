@@ -159,6 +159,8 @@ const filteredItems = items.filter((item) => item.price <= 100);
 
 const itemNames = items.map((item) => item.name);
 
+const filter500 = items.filter((item) => item.price <= 500);
+
 const foundItem = items.find((item) => {
   return (item.name = "book");
 });
