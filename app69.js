@@ -177,3 +177,5 @@ const totalPrice = items.reduce((currTotal, item) => {
 
 const numss = [1, 2, 3, 4, 5];
 const includesTwo = numss.includes(2); //true
+
+//testing commit from vscode
