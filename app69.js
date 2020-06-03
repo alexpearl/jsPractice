@@ -182,3 +182,5 @@ const includesTwo = numss.includes(2); //true
 function sayHi() {
   console.log("hello");
 }
+
+const fake = (num) => console.log(` say hi to ${num}`);
