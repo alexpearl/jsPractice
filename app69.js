@@ -184,3 +184,66 @@ function sayHi() {
 }
 
 const fake = (num) => console.log(` say hi to ${num}`);
+
+//colt steele yt video on arrow functions
+const div = (x, y) => x / y;
+
+const makeCard = () => ({ suit: "hearts", val: 3 });
+//need to wrap in parenthesis otherwise if implicit return will think its the function body {}
+
+const invoices = [
+  {
+    client: "billy",
+    amount: 400.49,
+    hasPaid: false,
+  },
+  {
+    client: "hedwig",
+    amount: 350.99,
+    hasPaid: false,
+  },
+  {
+    client: "pizzaHead",
+    amount: 135.5,
+    hasPaid: true,
+  },
+  {
+    client: "marty",
+    amount: 79.35,
+    hasPaid: false,
+  },
+  {
+    client: "grizzley",
+    amount: 99.99,
+    hasPaid: true,
+  },
+];
+
+// const payUp = invoices.filter((invoice) => invoice.hasPaid === false);
+
+// const stillOwed = invoices
+//   .filter(function (invoice) {
+//     return !invoice.hasPaid;
+//   })
+//   .reduce(function (total, invoice) {
+//     return total + invoice.amount;
+//   }, 0);
+
+const stillOwed = invoices
+  .filter((i) => !i.hasPaid)
+  .reduce((total, i) => total + i.amount, 0);
+
+//arrow functions do not get their own follow of this like a regular function expression
+
+const person = {
+  name: "bilbo",
+  // this will output bilbo says hi
+  // sayHi: function () {
+  //   console.log(this.name, "says hi");
+  // },
+  //this next one with arrow func will not retrieve the name of bilbo
+  sayHi: () => {
+    console.log(this.name, "says hi");
+  },
+};
+person.sayHi();
