@@ -277,3 +277,75 @@ const eagle = { canFly: true };
 const hybrid = { name: "Gryphon", ...lion, ...eagle };
 
 //{name: "Gryphon", hasTail: true, legs: 4, canFly: true}
+
+//
+
+//destructing with Web Dev Simplified
+//https://www.youtube.com/watch?v=NIq3qLaHCIs&t=8s
+
+const alphabet = ["A", "B", "C", "D", "E", "F"];
+const numb = ["1", "2", "3", "4", "5", "6"];
+
+// const a = alphabet[0];
+// const b = alphabet[1];
+//instead do this
+const [a, , c, ...everythingElse] = alphabet; //everythingElse gives you everything/rest of array
+const [, , , , e] = alphabet; //can use commas to skip over what you dont want
+console.log(a);
+console.log(everythingElse);
+console.log(e);
+
+const combine = [...alphabet, ...numb]; //another ex of spread
+
+function sumAndMultiple(a, b) {
+  return [a + b, a * b, a / b];
+}
+
+const [sum, mult, division = "no division"] = sumAndMultiple(2, 3); //destructuring from function
+//if no divison is set in the function then this default paremeter will output "no division"
+console.log(sum);
+console.log(mult);
+console.log(division);
+
+//destructing in objects
+const personOne = {
+  name: "kyle",
+  age: 24,
+  address: {
+    city: "somewhere",
+    state: "one of them",
+  },
+};
+const personTwo = {
+  name: "sally",
+  age: 32,
+  address: {
+    city: "somewhere else",
+    state: "another one of them",
+  },
+};
+
+//destructing in objects is similar to as in arrays except now we use the key from the object whereas in the array we used position
+//to change the name you want to use like we did for name below we can use : and give the variable name we want
+const { name: firstName, age, favoriteFood = "default food" } = personOne;
+console.log(firstName, age, favoriteFood);
+//above is just simpler way to do whats below
+// console.log(personTwo.name, personTwo.age);
+
+// const { name, ...rest } = personTwo;
+const {
+  name,
+  address: { city }, //to destructure nested objects
+} = personTwo;
+console.log(name, city);
+
+const personThree = { ...personOne, ...personTwo }; //creating a thrid person where personTwo overrides all of personOne
+
+// function printUser({user}) {
+//   console.log(`name is: ${user.name}. age is: ${user.age}`);
+// }
+//can destructure in function parem to only accept an object with an age and name property
+function printUser({ name, age }) {
+  console.log(`name is:${name}. age is: ${age}`);
+}
+printUser(personOne);
