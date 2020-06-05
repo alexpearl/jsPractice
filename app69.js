@@ -247,3 +247,33 @@ const person = {
   },
 };
 person.sayHi();
+
+//spread operator notes
+//https://www.notion.so/The-Spread-Operator-b7608512fbd844ec9f27f31740fb7298
+
+//in functions
+const temps = [70, 60, 55, 75, 68, 91, 84];
+const minTemp = Math.min(...temps);
+// spreads so we can retrieve the whole array otherwise wouldn't have worked
+
+//in array literals
+const parents = ["jim", "sansa"];
+const kids = ["maria", "susan", "bob"];
+const family = [...parents, ...kids];
+
+//also good to just copy an array
+const originals = ["Mona Lisa", "American Gothic", "The School of Athens"];
+const copies = [...originals];
+
+//spread in object literals
+const mainColors = { brightRed: "#e55039", waterfallBlue: "#38ada9" };
+const accentColors = { lightGrey: "#778ca3", swanWhite: "#f7f1e3" };
+
+const fullPalette = { ...mainColors, ...accentColors };
+//{brightRed: "#e55039", waterfallBlue: "#38ada9", lightGrey: "#778ca3", swanWhite: "#f7f1e3"}
+
+const lion = { hasTail: true, legs: 4 };
+const eagle = { canFly: true };
+const hybrid = { name: "Gryphon", ...lion, ...eagle };
+
+//{name: "Gryphon", hasTail: true, legs: 4, canFly: true}
