@@ -327,7 +327,7 @@ const personTwo = {
 
 //destructing in objects is similar to as in arrays except now we use the key from the object whereas in the array we used position
 //to change the name you want to use like we did for name below we can use : and give the variable name we want
-const { name: firstName, age, favoriteFood = "default food" } = personOne;
+const { name: firstName, age, favoriteFood = "default food" } = personOne; //right side of =is what your destructuring from, left is what you want from it
 console.log(firstName, age, favoriteFood);
 //above is just simpler way to do whats below
 // console.log(personTwo.name, personTwo.age);
@@ -349,3 +349,4 @@ function printUser({ name, age }) {
   console.log(`name is:${name}. age is: ${age}`);
 }
 printUser(personOne);
+

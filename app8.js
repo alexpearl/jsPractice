@@ -87,6 +87,51 @@ const auth = {
 
 //keyword 'this' -----------------------------
 
+//https://www.youtube.com/watch?v=YOlr79NaAtQ
+//What is THIS in JavaScript? in 100 seconds
+//references another value, usually an object that represents the current execution context (global or object calling the function)
+function whodis() {
+  console.log(this);
+}
+const showFace = {
+  face: "woah",
+  whodis: function () {
+    console.log(this);
+  },
+  buttWhoAmI: () => console.log(this),
+};
+const showJeffsFace = showFace.bind(jeff); //.bind makes a new function where this is explicit
+console.log(showJeffsFace());
+
+showFace.call(jeff, 1, 2, 3);
+showFace.apply(jeff, [1, 2, 3]);
+
+function Horse(name) {
+  this.name = name;
+}
+const myHorse = new Horse("secretariat"); //new creates objects where this is the new object
+
+function thisIsFun() {
+  console.log(this); //undefined
+}
+
+//mdn def of bind
+const module = {
+  x: 42,
+  getX: function () {
+    return this.x;
+  },
+};
+
+const unboundGetX = module.getX;
+console.log(unboundGetX()); // The function gets invoked at the global scope
+// expected output: undefined
+
+const boundGetX = unboundGetX.bind(module);
+console.log(boundGetX());
+// expected output: 42
+
+//
 function sayHi() {
   console.log("say hi");
   console.log(this); //current execution scope
