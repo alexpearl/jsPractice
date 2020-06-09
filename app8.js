@@ -178,7 +178,7 @@ const annoyer = {
   start() {
     this.timerId = setInterval(() => {
       console.log(this.pickPhrase());
-    }, 3000);
+    }, 3000); //arrow functions dont get there own this so it is useful in cases like thiss
   },
   stop() {
     clearInterval(this.timerId);

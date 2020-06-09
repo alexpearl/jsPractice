@@ -350,3 +350,11 @@ function printUser({ name, age }) {
 }
 printUser(personOne);
 
+const female = {
+  firstName: "sarah",
+  lastName: "smith",
+  yearsOld: 45,
+};
+
+const { firstName: fname, lastName: lname, yearsOld } = female;
+console.log(`${fname} ${lname} is ${yearsOld} years old`);
