@@ -1,6 +1,26 @@
 //JS in the browser/ DOM manipulation
 //document object model
 
+//notes making sure I uderstand everything
+/*
+innerText gives just text inbetween the tags, is aware of what is on the page (usually better)
+textContent does the same except it includes the specing and script text but doesnt include the tags
+innerHTML returns everything including tags, can be used to change whats inside the tags though
+can change source attributes using .value , .src , .href etc
+getAttribute method -- ex) range.getAttribute('max')
+setAttribute method -- ex) range.setAttribute('min', '-500')
+can access parent element by doing .parentElement --- ex) firstLI.parentElement
+can access children of an element by .children    ---ex) ul.children    ul.children[2]
+can access siblings by .nextElementSibling or .previousElementSibling    can work upwards or downwards or find children or parents
+changing multiply elements 
+  const allLis= document.querySelectorALl('li')
+  for (let li of allLis){
+    li.innerText= 'we are the champions'
+  }
+  //all lis have been updated
+
+*/
+
 // const allLis = document.querySelectorAll("li");
 
 // for (let li of allLis) {
