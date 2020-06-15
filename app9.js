@@ -19,6 +19,11 @@ changing multiply elements
   }
   //all lis have been updated
 
+can change the style of an element using .style.(whateever you wanna change)   ex  p.style.color= "blue"
+styles in dom are camelcased so background-color -> backgroundColor 
+
+getComputedStyle gives us style of an element ex  const computeStyle= li.getComputedStyle then can do computeStyle.fontSize to give us the font size of the li we selected  
+
 */
 
 // const allLis = document.querySelectorAll("li");
