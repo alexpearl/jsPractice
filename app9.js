@@ -60,7 +60,8 @@ const todo = document.querySelector("#todos .todo");
 // todo.style.textDecoration = "line-through";
 // todo.style.opacity = "50%";
 
-//using class instead
+//using class in css instead of doing above three lines and set todo to that class
+// use todo.classList.add('class') //can also do .remove or .toggle
 
 //document.createElement
 
@@ -75,3 +76,8 @@ newLink.innerText = "mr. bubz video! CLICK ME";
 newLink.href = "https://www.youtube.com/watch?v=QQNL83fhWJU";
 const firstP = document.querySelector("p");
 firstP.appendChild(newLink);
+
+const newText = document.createElement("p");
+newText.innerText = "created element";
+newText.classList.add("special");
+document.body.appendChild(newText);
