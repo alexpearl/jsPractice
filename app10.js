@@ -54,7 +54,9 @@
 
 //quick color picker
 const colors = ["red", "orange", "yellow", "green", "blue", "indigo", "violet"];
-const changeColor = function (box) {
+
+const changeColor = function (evt) {
+  console.log(evt);
   const h1 = document.querySelector("h1");
   h1.style.color = this.style.backgroundColor; //use of this to select the thing being used for the eventListener
 };
@@ -68,3 +70,44 @@ for (let color of colors) {
   container.appendChild(box);
   box.addEventListener("click", changeColor); //calling printColor function from above
 }
+
+//key events
+//tells us when we type a key
+document.body.addEventListener("keypress", function (e) {
+  console.log(e); //event
+});
+
+const input = document.querySelector("#username");
+
+//keydown: any input fires even like shift, a number, caps lock etc, fires when key is pressed down initially
+input.addEventListener("keydown", function (e) {
+  console.log("keydown!!");
+});
+
+//fires when you lift up from pressing a key/ i.e the release
+input.addEventListener("keyup", function (e) {
+  console.log("keyup!!");
+});
+
+//differs from browser to broswer, shift won't show as output for a keypress, but shift+a letter to capitalize it will show
+input.addEventListener("keypress", function (e) {
+  console.log("keypress!!");
+});
+
+//generally keypress wouldn't be good for a game
+
+//note return is a keypress
+
+//shopping list logic
+const addItemInput = document.querySelector("#addItem");
+const itemsUL = document.querySelector("#items");
+
+addItemInput.addEventListener("keypress", function (e) {
+  if (e.key === "Enter") {
+    const newItemText = this.value;
+    const newItem = document.createElement("li");
+    newItem.innerText = newItemText;
+    itemsUL.append(newItem);
+    this.value = ""; //clear it
+  }
+});
