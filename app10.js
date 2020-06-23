@@ -112,3 +112,11 @@ addItemInput.addEventListener("keypress", function (e) {
     this.value = ""; //clear it
   }
 });
+
+//counter incorporate into game just made
+let counter = document.querySelector("#count"),
+  count = 0;
+counter.addEventListener("click", function () {
+  count += 1;
+  counter.innerHTML = `count: ` + count;
+});
