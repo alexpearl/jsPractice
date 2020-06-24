@@ -120,3 +120,39 @@ counter.addEventListener("click", function () {
   count += 1;
   counter.innerHTML = `count: ` + count;
 });
+
+//form ex
+const creditCardInput = document.querySelector("#cc");
+const termsCheckbox = document.querySelector("#terms");
+const veggiesSelect = document.querySelector("#veggie");
+const form = document.querySelector("#signup-form");
+
+form.addEventListener("submit", function (e) {
+  e.preventDefault(); //prevent the default behavior
+  console.log("cc", creditCardInput.value);
+  console.log("terms", termsCheckbox.checked);
+  console.log("veggiesSelect", veggiesSelect.value);
+});
+
+//changes right away/syncs
+const formData = {};
+
+for (let input of [creditCardInput, termsCheckbox, veggiesSelect]) {
+  input.addEventListener("input", ({ target }) => {
+    const { name, type, value, checked } = target;
+    formData[name] = type === "checkbox" ? checked : value;
+  });
+}
+
+// creditCardInput.addEventListener("input", (e) => {
+//   console.log("cc changed", e);
+//   formData["cc"] = e.target.value;
+// });
+// veggiesSelect.addEventListener("input", (e) => {
+//   console.log("veggie changed", e);
+//   formData["veggie"] = e.target.value;
+// });
+// termsCheckbox.addEventListener("input", (e) => {
+//   console.log("checkbox changed", e);
+//   formData["agreeToTerms"] = e.target.checked;
+// });
