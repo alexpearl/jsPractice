@@ -139,6 +139,7 @@ const formData = {};
 
 for (let input of [creditCardInput, termsCheckbox, veggiesSelect]) {
   input.addEventListener("input", ({ target }) => {
+    //destructed target from event then destructed again for next line
     const { name, type, value, checked } = target;
     formData[name] = type === "checkbox" ? checked : value;
   });
