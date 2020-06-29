@@ -25,7 +25,7 @@ const makeRant = (phrase, el) => {
   el.appendChild(h1);
 };
 
-makeRant("i hate mayo", document.body);
+// makeRant("i hate mayo", document.body);
 // makeRant("if you have a cough, please cover your mouth", document.body);
 
 //JS is single-threaded, does one thing at a time
@@ -63,3 +63,72 @@ for (let i = 1; i <= 100; i++) {
 }
 
 //callback hell ex...
+const btn = document.querySelector("button");
+
+// setTimeout(() => {
+//   btn.style.transform = "translateX(100px)";
+//   setTimeout(() => {
+//     btn.style.transform = `translate(200px)`;
+//     setTimeout(() => {
+//       btn.style.transform = `translate(300px)`;
+//       setTimeout(() => {
+//         btn.style.transform = `translate(400px)`;
+//         setTimeout(() => {
+//           btn.style.transform = `translate(500px)`;
+//         }, 1000);
+//       }, 1000);
+//     }, 1000);
+//   }, 1000);
+// }, 1000);
+
+const moveX = (el, amount, delay, callback, onSuccess, onFailure) => {
+  setTimeout(() => {
+    const bodyBoundary = document.body.clientWidth;
+    const elRight = el.getBoundingClientRect().right;
+    const currLeft = el.getBoundingClientRect().left;
+
+    if (elRight + amount > bodyBoundary) {
+      onFailure();
+    } else {
+      el.style.transform = `translateX(${currLeft + amount}px)`;
+      onSuccess();
+    }
+  }, delay);
+};
+
+//making the callback arrow function
+// moveX(btn, 100, 2000, () => {
+//   moveX(btn, 100, 1000, () => {
+//     moveX(btn, 100, 1000, () => {
+//       moveX(btn, 100, 1000, () => {
+//         moveX(btn, 100, 1000);
+//       });
+//     });
+//   });
+// });
+
+// LOOK AT THIS UGLY MESS!
+moveX(
+  btn,
+  100,
+  1000,
+  () => {
+    //success callback
+    moveX(
+      btn,
+      400,
+      1000,
+      () => {
+        console.log("Second move succeeded");
+      },
+      () => {
+        //failure callback
+        alert("Second move failed!");
+      }
+    );
+  },
+  () => {
+    //failure callback
+    alert("First move failed!");
+  }
+);
