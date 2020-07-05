@@ -108,27 +108,78 @@ const moveX = (el, amount, delay, callback, onSuccess, onFailure) => {
 // });
 
 // LOOK AT THIS UGLY MESS!
-moveX(
-  btn,
-  100,
-  1000,
-  () => {
-    //success callback
-    moveX(
-      btn,
-      400,
-      1000,
-      () => {
-        console.log("Second move succeeded");
-      },
-      () => {
-        //failure callback
-        alert("Second move failed!");
+// moveX(
+//   btn,
+//   100,
+//   1000,
+//   () => {
+//     //success callback
+//     moveX(
+//       btn,
+//       400,
+//       1000,
+//       () => {
+//         console.log("Second move succeeded");
+//       },
+//       () => {
+//         //failure callback
+//         alert("Second move failed!");
+//       }
+//     );
+//   },
+//   () => {
+//     //failure callback
+//     alert("First move failed!");
+//   }
+// );
+
+//promise is an object representing the eventual completion or failure of an asynchronous operation
+//a promise is a returned object to which you attach callbacks, instead of passing callbacks into a function
+// const willGetYouADog = new Promise((resolve, reject) => {
+//   const rand = Math.random();
+//   if (rand < 0.5) {
+//     resolve();
+//   } else {
+//     reject();
+//   }
+// });
+
+// //.then will run if resolved
+// //.cactch will run if rejected
+// willGetYouADog
+//   .then(() => {
+//     console.log("yay we got a dog");
+//   })
+//   .catch(() => {
+//     console.log(`no dog`);
+//   });
+
+//same as above
+// willGetYouADog.then(() => {
+//   console.log("yay we got a dog");
+// });
+// willGetYouADog.catch(() => {
+//   console.log(`no dog`);
+// });
+
+//returning promises from function
+const makeDogPromise = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const rand = Math.random();
+      if (rand < 0.5) {
+        resolve();
+      } else {
+        reject();
       }
-    );
-  },
-  () => {
-    //failure callback
-    alert("First move failed!");
-  }
-);
+    }, 5000);
+  });
+};
+
+makeDogPromise()
+  .then(() => {
+    console.log("yay we got a dog");
+  })
+  .catch(() => {
+    console.log(`no dog`);
+  });
