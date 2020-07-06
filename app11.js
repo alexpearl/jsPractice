@@ -183,3 +183,48 @@ makeDogPromise()
   .catch(() => {
     console.log(`no dog`);
   });
+
+//fake request promise
+const fakeRequest = (url) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const pages = {
+        "/users": [
+          { id: 1, username: "bilbo" },
+          { id: 5, username: "esmerelda" },
+        ],
+        "/about": "this is the about page",
+      };
+      const data = pages[url];
+      if (data) {
+        resolve({ status: 200, data });
+      } else {
+        reject({ status: 404 });
+      }
+    }, 2000);
+  });
+};
+
+//will run because /users exists
+fakeRequest("/users")
+  .then((response) => {
+    console.log("status code", response.status);
+    console.log("data", response.data);
+  })
+  .catch((response) => {
+    console.log(response.status);
+    console.log("request failed");
+  });
+
+//test one that doesnt run because /dogs doesnt exist
+fakeRequest("/dogs")
+  .then((response) => {
+    console.log("status code", response.status);
+    console.log("data", response.data);
+  })
+  .catch((response) => {
+    console.log(response.status);
+    console.log("request failed");
+  });
+
+//promise chaining in seperate folder
