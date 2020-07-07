@@ -76,3 +76,67 @@ fakeRequest("/users")
 // 	.catch((err) => {
 // 		console.log('OH NO!', err);
 // 	});
+
+//WDS video on JS Promises
+let p = new Promise((resolve, reject) => {
+  let a = 1 + 2;
+  if (a == 2) {
+    resolve("success");
+  } else {
+    reject("failed");
+  }
+});
+
+p.then((message) => {
+  console.log("this is in the then " + message);
+}).catch((message) => {
+  console.log("this is in the catch " + message);
+});
+
+function watchTutorialPromise() {
+  let userLeft = true;
+  let userWatchingCatMeme = false;
+  return new Promise((resolve, reject) => {
+    if (userLeft) {
+      reject({
+        name: "User Left",
+        message: ":(",
+      });
+    } else if (userWatchingCatMeme) {
+      reject({
+        name: "User Watching Cat Meme",
+        message: "WebDevSimplified < Cat",
+      });
+    } else {
+      resolve("Thumbs up and Subscribe");
+    }
+  });
+}
+
+watchTutorialPromise()
+  .then((message) => {
+    console.log(message);
+  })
+  .catch((error) => {
+    console.log(error.name + " " + error.message);
+  });
+
+const recordVideoOne = new Promise((resolve, reject) => {
+  resolve("Video 1 Recorded");
+});
+
+const recordVideoTwo = new Promise((resolve, reject) => {
+  resolve("Video 2 Recorded");
+});
+
+const recordVideoThree = new Promise((resolve, reject) => {
+  resolve("Video 3 Recorded");
+});
+
+Promise.all([recordVideoOne, recordVideoTwo, recordVideoThree]).then((messages) => {
+  console.log(console.log(messages));
+}); //runs and waits for all to complete
+
+Promise.race([recordVideoOne, recordVideoTwo, recordVideoThree]).then((messages) => {
+  console.log(console.log(messages));
+}); //returns first one

@@ -65,6 +65,36 @@ for (let i = 1; i <= 100; i++) {
 //callback hell ex...
 const btn = document.querySelector("button");
 
+//refactoring once taught promises
+const moveX = (el, amount, delay) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const bodyBoundary = document.body.clientWidth;
+      const elRight = el.getBoundingClientRect().right;
+      const currLeft = el.getBoundingClientRect().left;
+
+      if (elRight + amount > bodyBoundary) {
+        reject(bodyBoundary, elRight, amount);
+      } else {
+        el.style.transform = `translateX(${currLeft + amount}px)`;
+        resolve();
+      }
+    }, delay);
+  });
+};
+
+moveX(btn, 300, 1000)
+  .then(() => moveX(btn, 3000, 1000)) //gives a promises, implicit arrow func return
+  .then(() => moveX(btn, 3000, 1000))
+  .then(() => moveX(btn, 3000, 1000))
+  .then(() => moveX(btn, 3000, 1000))
+  .then(() => moveX(btn, 3000, 1000))
+  //destructing the data from reject()
+  .catch(({ bodyBoundary, amount, elRight }) => {
+    console.log(`body is ${bodyBoundary}px wide`);
+    console.log(`element is at ${elRight}px, ${amount}px is too large `);
+  }); //will catch any .thens that fail
+
 // setTimeout(() => {
 //   btn.style.transform = "translateX(100px)";
 //   setTimeout(() => {
@@ -81,20 +111,20 @@ const btn = document.querySelector("button");
 //   }, 1000);
 // }, 1000);
 
-const moveX = (el, amount, delay, callback, onSuccess, onFailure) => {
-  setTimeout(() => {
-    const bodyBoundary = document.body.clientWidth;
-    const elRight = el.getBoundingClientRect().right;
-    const currLeft = el.getBoundingClientRect().left;
+// const moveX = (el, amount, delay, callback, onSuccess, onFailure) => {
+//   setTimeout(() => {
+//     const bodyBoundary = document.body.clientWidth;
+//     const elRight = el.getBoundingClientRect().right;
+//     const currLeft = el.getBoundingClientRect().left;
 
-    if (elRight + amount > bodyBoundary) {
-      onFailure();
-    } else {
-      el.style.transform = `translateX(${currLeft + amount}px)`;
-      onSuccess();
-    }
-  }, delay);
-};
+//     if (elRight + amount > bodyBoundary) {
+//       onFailure();
+//     } else {
+//       el.style.transform = `translateX(${currLeft + amount}px)`;
+//       onSuccess();
+//     }
+//   }, delay);
+// };
 
 //making the callback arrow function
 // moveX(btn, 100, 2000, () => {
