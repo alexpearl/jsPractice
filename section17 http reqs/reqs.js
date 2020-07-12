@@ -37,8 +37,6 @@ firstReq.addEventListener("error", () => {
   console.log("error..");
 });
 
-firstReq.open("GET", "https://swapi.dev/api/planets");
+firstReq.open("GET", "https://swapi.dev/api/planets/");
 firstReq.send();
 console.log("request sent");
-
-//output error having to do with CORS
