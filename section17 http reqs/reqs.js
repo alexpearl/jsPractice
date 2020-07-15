@@ -70,32 +70,32 @@
 
 //fetch syntax - supports promises, not supported in IE but who cares about IE
 
-// const checkStatusAndParse = (response) => {
-//   if (!response.ok) throw new Error(`status code error: ${response.status}`);
-//   return response.json();
-// };
+const checkStatusAndParse = (response) => {
+  if (!response.ok) throw new Error(`status code error: ${response.status}`);
+  return response.json();
+};
 
-// const printPlanets = (data) => {
-//   console.log("loaded ten more planets");
-//   for (let planet of data.results) {
-//     console.log(planet.name);
-//   }
-//   return Promise.resolve(data.next);
-// };
+const printPlanets = (data) => {
+  console.log("loaded ten more planets");
+  for (let planet of data.results) {
+    console.log(planet.name);
+  }
+  return Promise.resolve(data.next);
+};
 
-// const fetchNextPlanets = (url) => {
-//   return fetch(url);
-// };
+const fetchNextPlanets = (url) => {
+  return fetch(url);
+};
 
-// fetch("https://swapi.dev/api/planets/")
-//   .then(checkStatusAndParse)
-//   .then(printPlanets)
-//   .then(fetchNextPlanets)
-//   .then(checkStatusAndParse)
-//   .then(printPlanets)
-//   .catch((err) => {
-//     console.log("something went wrong", err);
-//   }); //even if 404 status code catch will not run, fetch isn't like the xmlhttpreqs in that case
+fetch("https://swapi.dev/api/planets/")
+  .then(checkStatusAndParse)
+  .then(printPlanets)
+  .then(fetchNextPlanets)
+  .then(checkStatusAndParse)
+  .then(printPlanets)
+  .catch((err) => {
+    console.log("something went wrong", err);
+  }); //even if 404 status code catch will not run, fetch isn't like the xmlhttpreqs in that case
 //but when we throw a new error we have acess to it in our catch
 //json method makes it fully read and returns a promise already in a promise so to return the data we need another .then
 

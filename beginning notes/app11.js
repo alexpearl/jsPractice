@@ -175,7 +175,7 @@ moveX(btn, 300, 1000)
 // });
 
 // //.then will run if resolved
-// //.cactch will run if rejected
+// //.catch will run if rejected
 // willGetYouADog
 //   .then(() => {
 //     console.log("yay we got a dog");
