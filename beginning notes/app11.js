@@ -65,6 +65,21 @@ for (let i = 1; i <= 100; i++) {
 //callback hell ex...
 const btn = document.querySelector("button");
 
+//async refactor
+async function animateRight(el, amount) {
+  await moveX(el, amount, 1000);
+  await moveX(el, amount, 1000);
+  await moveX(el, amount, 1000);
+  await moveX(el, amount, 1000);
+  await moveX(el, amount, 1000);
+  await moveX(el, amount, 1000);
+  await moveX(el, amount, 1000);
+}
+animateRight(btn, 100).catch((err) => {
+  console.log("all done");
+  animateRight(btn, -100);
+});
+
 //refactoring once taught promises
 const moveX = (el, amount, delay) => {
   return new Promise((resolve, reject) => {
