@@ -1,0 +1,60 @@
+Dan Abramov JS  newsletters
+
+1. 
+coding fast and slow: should take time to understand 
+In the “fast” mode, we guess what the code does based on naming, comments, and its overall structure. In the “slow” mode, we retrace what the code does step by step.
+That’s why having a correct mental model is so important. Simulating a computer in our heads is hard enough — and this effort is wasted with wrong mental models.
+
+-----------------------------------------------------------------------
+
+2. 
+To distinguish values from everything else in my JavaScript program, I like to imagine this drawing of the Little Prince by Antoine de Saint-Exupéry:
+I’m standing on a small asteroid — it is the code of my program.
+On its surface, I see the if statements and variable declarations, commas, curly braces, and all the other things one might find in the JavaScript code.
+My code contains instructions like “make a function call” or “do this thing many times”, or even “throw an error”. I walk through these instructions step by step — running errands from my small asteroid.
+But every once in a while, I look up.
+On a clear night, I see the different values in the JavaScript sky: booleans, numbers, strings, symbols, functions and objects, null and undefined — oh my! I might refer to them in my code, but they don’t exist inside my code.
+In my JavaScript universe, values float in space.
+Primitive Values are numbers and strings, among other things.
+objects and Functions are also values, but they are not primitive.
+
+primitive values are like distant stars, then objects and functions are more like rocks floating nearby my code. They’re close enough that I can manipulate them.
+
+Expressions are questions that JavaScript can answer. JavaScript answers expressions in the only way it knows how — with values.
+
+We ask JavaScript 2 + 2, and it answers with 4. Expressions always result in a single value. Now we know enough about expressions to be dangerous!
+
+If we want to check a value’s type, we can ask it with the typeof operator. JavaScript will answer our question with one of the predetermined string values, such as "number", "string", or "object".
+console.log(typeof(2)); // "number"
+console.log(typeof("hello")); // "string"
+console.log(typeof(undefined)); // "undefined"
+
+
+Types of Values
+As an aspiring astronomer, you might want to know about every type of value that can be observed in the JavaScript sky. After almost twenty five years of studying JavaScript, the scientists have only discovered nine such types:
+
+Primitive Values
+
+Undefined (undefined), used for unintentionally missing values.
+Null (null), used for intentionally missing values.
+Booleans (true and false), used for logical operations.
+Numbers (-100, 3.14, and others), used for math calculations.
+Strings ("hello", "abracadabra", and others), used for text.
+Symbols (uncommon), used to hide implementation details.
+BigInts (uncommon and new), used for math on big numbers.
+
+Objects and Functions
+Objects ({} and others), used to group related data and code.
+Functions (x => x * 2 and others), used to refer to code.
+
+No Other Types
+You might ask: “But what about other types I have used, like arrays?”
+In JavaScript, there are no other fundamental value types other than the ones we have just enumerated. The rest are all objects! For example, even arrays, dates, and regular expressions fundamentally are objects in JavaScript:
+console.log(typeof([])); // "object"
+console.log(typeof(new Date())); // "object"
+console.log(typeof(/(hello|goodbye)/)); // "object"
+
+Concretely, typeof(null) is "object" even though null is not an object. Null is a primitive value. (Here’s a historical note on how that happened.) This is a very old bug in JavaScript.
+
+--------------------------------------------------------------
+
