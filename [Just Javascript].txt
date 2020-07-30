@@ -58,3 +58,111 @@ Concretely, typeof(null) is "object" even though null is not an object. Null is 
 
 --------------------------------------------------------------
 
+3. 
+Primitive Values Are Immutable
+I will explain this with a small example. Strings (which are primitive) and arrays (which are not — they’re objects!) have some superficial similarities. An array is a sequence of items, and a string is a sequence of characters:
+
+let arr = [212, 8, 506];
+let str = 'hello';
+You can access the first array item similarly to how you would access a string’s first character. 
+It almost feels like strings are arrays (but they’re not!):
+console.log(arr[0]); // 212
+console.log(str[0]); // "h"
+
+You can change an array’s first item:
+arr[0] = 420;
+console.log(arr); // [420, 8, 506]
+
+So intuitively, it’s easy to assume that you can do the same to a string:
+str[0] = 'j'; // ???
+But you can’t.
+Here’s an important bit that we need to add to our mental model. A string is a primitive value. And that means a great deal!
+All primitive values are immutable. “Immutable” is a fancy Latin way to say “unchangeable”. Read-only. You can’t mess with primitive values. At all.
+
+In my JavaScript universe, all primitive values exist in the outer circle further from my code — like distant stars. This reminds me that even though I can refer to them from my code, I can’t change them. They stay what they are.
+I find it strangely comforting.
+
+A Contradiction? not really since pet is a variable, not a string, although it holds a string 
+I have just demonstrated that primitive values are read-only — or, in the parlance of our times, immutable. Here’s a snippet to test your mental model.
+let pet = 'Narwhal';
+pet = 'The Kraken';
+console.log(pet); //The Kraken 
+We know that string values can’t change because they are primitive. But the pet variable does change to "The Kraken". What’s up with that?
+This might seem like it’s a contradiction, but it’s not. We only said it’s the primitive values that can’t change. We didn’t say anything about variables!
+
+Variables are not values.
+Variables point to values.
+
+n my universe, a variable is a wire. It has two ends and a direction: it starts from a name in my code and it ends pointing at some value in my universe.
+For example, I can point the pet variable at the "Narwhal" value:
+
+
+The left side of an assignment must be a “wire”.
+The right side of an assignment must be an expression. It can be something simple, like 2 or 'hello', or a more complicated expression — for example:
+pet = count + ' Dalmatians';
+
+I can also read the value of variable — for example, to log it:
+console.log(pet);
+That’s hardly surprising.
+But note that it is not the pet variable that we pass to console.log. We might say that colloquially, but we can’t really pass variables to functions. We pass the current value of the pet variable. How does this work?
+It turns out that a variable name like pet can serve as an expression too! When we write pet, we’re asking JavaScript a question: “What is the current value of pet?” To answer our question, JavaScript follows the pet’s “wire”, and gives us back the value at the end of this “wire”.
+
+Now let’s revisit the first example from Mental Models:
+let x = 10;
+let y = x;
+x = 0;
+At the end, the x variable points to the value 0, and the y variable points to the value 10. Note that y = x did not mean point y to x”. We can’t point variables to each other! Variables always point at values.
+When we see an assignment, we “ask” the right side’s value, and point the left side’s “wire” at it.
+
+-------------------------------------------------------------------
+
+4. 
+To me, each string is a value. Not a “pointer” or a “memory address” — but a value. In my universe, a value is good enough.
+Instead, the foundation of our mental model is that our world is full of values.
+Each value belongs to one of a few built-in types. Some of them are primitive, which makes values of those types immutable.
+Variables are “wires” pointing from names in our code to values.
+
+Distinguishing values from one another is key to understanding equality in JavaScript — which will be our next topic.
+
+Undefined
+We’ll start our tour with the Undefined type. Count von Count will be pleased to know that there is only one value of that type — undefined.
+console.log(typeof(undefined)); // "undefined"
+It’s called undefined so you might think it’s not there — but it is a value, and a very real one! 
+Like a black hole, undefined is grumpy and can often spell trouble. For example, reading a property from it will break your program:
+let person = undefined;
+console.log(person.mood); // TypeError!
+It represents the concept of an unintentionally missing value.
+For example, if you forget to assign a variable, it will point to undefined:
+let bandersnatch;
+console.log(bandersnatch); // undefined
+Really, undefined is a regular primitive value, like 2 or "hello".
+
+Null
+You can think of null as undefined’s sister. It behaves very similarly. For example, it will also throw a fuss when you try to access its properties:
+let mimsy = null;
+console.log(mimsy.mood); // TypeError!
+Similarly to undefined, null is the only value of its own type. However, null is also a liar. Due to a bug in JavaScript, it pretends to be an object:
+console.log(typeof(null)); // "object" (a lie!)
+In practice, null is used for intentionally missing values
+
+Booleans
+Like day and night, there are only two boolean values: true and false.
+console.log(typeof(true)); // "boolean"
+console.log(typeof(false)); // "boolean"
+
+Numbers
+console.log(typeof(3.14)); // "number"
+JavaScript numbers don’t behave exactly the same way as regular mathematical numbers do. Here is a snippet that demonstrates it:
+console.log(0.1 + 0.2 === 0.3); // false
+console.log(0.1 + 0.2 === 0.30000000000000004); // true
+This behavior is common in different programming languages. It even has a name: floating point math.
+Special Numbers
+It is worth noting that floating point math includes a few special numbers. You might occasionally run into NaN, Infinity, -Infinity, and -0.
+They exist because sometimes you might execute operations like 1 / 0, and JavaScript needs to represent their result somehow.
+let scale = 0;
+let a = 1 / scale; // Infinity
+let b = 0 / scale; // NaN
+let c = -a; // -Infinity
+let d = 1 / c; // -0
+console.log(typeof(NaN)); // "number"
+
