@@ -116,7 +116,7 @@ When we see an assignment, we “ask” the right side’s value, and point the 
 
 -------------------------------------------------------------------
 
-4. 
+4. + 5. 
 To me, each string is a value. Not a “pointer” or a “memory address” — but a value. In my universe, a value is good enough.
 Instead, the foundation of our mental model is that our world is full of values.
 Each value belongs to one of a few built-in types. Some of them are primitive, which makes values of those types immutable.
@@ -165,4 +165,67 @@ let b = 0 / scale; // NaN
 let c = -a; // -Infinity
 let d = 1 / c; // -0
 console.log(typeof(NaN)); // "number"
+
+BigInts 
+let alot = 9007199254740991n; // Notice n at the end
+console.log(alot + 1n); // 9007199254740992n
+console.log(alot + 2n); // 9007199254740993n
+console.log(alot + 3n); // 9007199254740994n
+console.log(alot + 4n); // 9007199254740995n
+console.log(alot + 5n); // 9007199254740996n
+Operations with truly huge numbers may take time and resources.
+
+Strings 
+three ways to write strings (single quotes, double quotes, and backticks), but the result is the same
+An empty string is a string, too:
+console.log(typeof('')); // "string"
+strings aren't objects
+String properties are special and don’t behave the way object properties do. For example, you can’t assign anything to cat[0]. 
+Strings are primitives, and all primitives are immutable.
+all conceivable string values already exist from the beginning — one value for every distinct string.
+
+Symbols
+Symbols are a relatively recent addition to the language.
+let alohomora = Symbol();
+console.log(typeof(alohomora)); // "symbol"
+
+Objects
+This includes arrays, dates, RegExps, and other non-primitive values:
+console.log(typeof({})); // "object"
+console.log(typeof([])); // "object"
+console.log(typeof(new Date())); // "object"
+console.log(typeof(/\d+/)); // "object"
+console.log(typeof(Math)); // "object"
+Unlike everything before, objects are not primitive values. 
+This also means that by default, they’re mutable. We can access their properties with . or []:
+let rapper = { name: 'Malicious' };
+rapper.name = 'Malice'; // Dot notation
+rapper['name'] = 'No Malice'; // Bracket notation
+What makes objects different is that we can create more of them. Every time we use the {} object literal, we create a brand new object value:
+The same goes for arrays, dates, and any other objects. For example, the [] array literal creates a new array value — a value that never existed before.
+we can create objects — but we cannot destroy them
+In my universe, objects and functions float closest to my code. 
+    This reminds me that I can manipulate them and even make more of them.
+
+Functions 
+To understand functions, we will compare them to numbers and objects.
+First, consider this for loop that runs console.log(2) seven times:
+for (let i = 0; i < 7; i++) {
+  console.log(2);
+}
+There is only one value for every number in our universe, so it “answers” our question by “summoning” the same value for the number 2 every time. 
+So the answer is one value. 
+We will see the log seven times — but we are passing the same value in each call.
+
+Here is another for loop that runs console.log({}) seven times:
+for (let i = 0; i < 7; i++) {
+  console.log({});
+}
+it creates a new object value — which will be the result of the {} object literal. 
+So the code above creates and logs seven completely distinct object values.
+
+Every time we execute a line of code that contains a function expression, a brand new function value appears in our universe.
+
+--------------------------------------------------------------
+
 
