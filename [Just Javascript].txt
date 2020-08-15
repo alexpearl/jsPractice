@@ -34,7 +34,6 @@ Types of Values
 As an aspiring astronomer, you might want to know about every type of value that can be observed in the JavaScript sky. After almost twenty five years of studying JavaScript, the scientists have only discovered nine such types:
 
 Primitive Values
-
 Undefined (undefined), used for unintentionally missing values.
 Null (null), used for intentionally missing values.
 Booleans (true and false), used for logical operations.
@@ -93,7 +92,7 @@ This might seem like it’s a contradiction, but it’s not. We only said it’s
 Variables are not values.
 Variables point to values.
 
-n my universe, a variable is a wire. It has two ends and a direction: it starts from a name in my code and it ends pointing at some value in my universe.
+In my universe, a variable is a wire. It has two ends and a direction: it starts from a name in my code and it ends pointing at some value in my universe.
 For example, I can point the pet variable at the "Narwhal" value:
 
 
@@ -228,4 +227,44 @@ Every time we execute a line of code that contains a function expression, a bran
 
 --------------------------------------------------------------
 
+6. 
+Strict Equality: a === b (triple equals).
+Loose Equality: a == b (double equals).
+Same Value Equality: Object.is(a, b).
+
+In JavaScript, Object.is(a, b) tells us if a and b are the same value:
+console.log(Object.is(2, 2)); // true
+console.log(Object.is({}, {})); // false
+
+Consider this example from the Counting the Values exercises:
+let dwarves = 7;
+let continents = '7';
+let worldWonders = 3 + 4;
+Object.is(dwarves, continents) is false because dwarves and continents point at different values.
+Object.is(continents, worldWonders) is false because continents and worldWonders point at different values.
+Object.is(worldWonders, dwarves) is true because worldWonders and dwarves point at the same value.
+
+Strict Equality: a === b
+You have probably used the Strict Equality operator before:
+console.log(2 === 2); // true
+console.log({} === {}); // false
+
+Consider the cases below as exceptions to the rule — just like you had to memorize the irregular verbs when you were learning English. Both of these unusual cases involve “special numbers” that we discussed in the past:
+NaN === NaN is false, although they are the same value.
+-0 === 0 and 0 === -0 are true, although they are different values.
+
+
+Loose Equality (double equals) is the bogeyman of JavaScript.
+Here’s just a couple of examples to make your skin crawl:
+console.log([[]] == ''); // true
+console.log(true == [1]); // true
+console.log(false == [0]); // true
+There is one usage of it that is relatively common and is worth knowing:
+if (x == null) {
+  // ...
+}
+This code is equivalent to writing:
+if (x === null || x === undefined) {
+  // ...
+}
 
