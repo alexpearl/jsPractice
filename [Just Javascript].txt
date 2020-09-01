@@ -76,7 +76,7 @@ So intuitively, it’s easy to assume that you can do the same to a string:
 str[0] = 'j'; // ???
 But you can’t.
 Here’s an important bit that we need to add to our mental model. A string is a primitive value. And that means a great deal!
-All primitive values are immutable. “Immutable” is a fancy Latin way to say “unchangeable”. Read-only. You can’t mess with primitive values. At all.
+******All primitive values are immutable. “Immutable” is a fancy Latin way to say “unchangeable”. Read-only. You can’t mess with primitive values. At all.
 
 In my JavaScript universe, all primitive values exist in the outer circle further from my code — like distant stars. This reminds me that even though I can refer to them from my code, I can’t change them. They stay what they are.
 I find it strangely comforting.
@@ -89,8 +89,10 @@ console.log(pet); //The Kraken
 We know that string values can’t change because they are primitive. But the pet variable does change to "The Kraken". What’s up with that?
 This might seem like it’s a contradiction, but it’s not. We only said it’s the primitive values that can’t change. We didn’t say anything about variables!
 
+******
 Variables are not values.
 Variables point to values.
+******
 
 In my universe, a variable is a wire. It has two ends and a direction: it starts from a name in my code and it ends pointing at some value in my universe.
 For example, I can point the pet variable at the "Narwhal" value:
@@ -267,4 +269,50 @@ This code is equivalent to writing:
 if (x === null || x === undefined) {
   // ...
 }
+
+--------------------------------------------------------------
+
+7. 
+let sherlock = {
+  surname: 'Holmes',
+  address: { city: 'London' } 
+};
+His friend John Watson has recently moved in to live with Sherlock:
+let john = {
+  surname: 'Watson',
+  address: sherlock.address
+};
+
+changes:
+john.surname = 'Lennon';
+john.address.city = 'Malibu';
+
+results:
+console.log(sherlock.surname); // "Holmes"
+console.log(sherlock.address.city); // "Malibu"
+console.log(john.surname); // "Lennon"
+console.log(john.address.city); // "Malibu"
+
+let sherlock = {
+  surname: 'Holmes',
+  age: 64,
+};
+Here, sherlock is still a variable, but surname and age are not. 
+They are properties. Unlike variables, properties belong to a particular object.
+
+In our JavaScript universe, both variables and properties act like “wires”. 
+However, the wires of properties start from objects rather than from our code:
+
+******Importantly, properties don’t contain values — they point at them!
+It turns out that our universe is full of wires. 
+Some of them start in our code (variables), and others start from objects (properties). 
+All wires always point at values.
+
+let sherlock = { surname: 'Holmes', age: 64 };
+console.log(sherlock.boat); // undefined
+if the property doesn't exist it will throw an error of undefined 
+console.log(sherlock.boat.name); // TypeError!
+
+2 objects won't have the same property but 2 properties from the 2 objects can point to the same value 
+
 
