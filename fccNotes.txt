@@ -1,0 +1,18 @@
+In JavaScript, String values are immutable, which means that they cannot be altered once created.
+
+For example, the following code:
+
+var myStr = "Bob";
+myStr[0] = "J";
+cannot change the value of myStr to "Job", because the contents of myStr cannot be altered. Note that this does not mean that myStr cannot be changed, just that the individual characters of a string literal cannot be changed. The only way to change myStr would be to assign it with a new string, like this:
+
+var myStr = "Bob";
+myStr = "Job";
+
+var firstName = "Ada";
+var secondLetterOfFirstName = firstName[1]; // secondLetterOfFirstName is "d"
+
+In order to get the last letter of a string, you can subtract one from the string's length.
+For example, if var firstName = "Charles", 
+you can get the value of the last letter of the string by using firstName[firstName.length - 1].
+
